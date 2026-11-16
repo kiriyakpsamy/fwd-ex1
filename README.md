@@ -1,6 +1,72 @@
 # EX01 Developing a Simple Webserver
-## Date:
+## Date:16.11.2026
+## Reg no:26018067
+~~~
+from http.server import HTTPServer, BaseHTTPRequestHandler
+content ="""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TCP/IP Protocol List</title>
+</head>
+<body>
+  <h1>TCP/IP Layers and Protocols</h1>
 
+  <ol>
+    <li>
+      <strong>Application Layer</strong>
+      <ul>
+        <li>HTTP / HTTPS</li>
+        <li>FTP</li>
+        <li>SMTP</li>
+        <li>DNS</li>
+        <li>DHCP</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>Transport Layer</strong>
+      <ul>
+        <li>TCP</li>
+        <li>UDP</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>Internet Layer</strong>
+      <ul>
+        <li>IP (IPv4 / IPv6)</li>
+        <li>ICMP</li>
+        <li>IGMP</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>Network Access Layer</strong>
+      <ul>
+        <li>Ethernet</li>
+        <li>Wi-Fi (IEEE 802.11)</li>
+        <li>ARP</li>
+      </ul>
+    </li>
+  </ol>
+</body>
+</html>
+
+"""
+class myhandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        print("request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
+        self.end_headers()
+        self.wfile.write(content.encode())
+server_address = ('',880)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
+httpd.serve_forever()
+~~~
 ## AIM:
 To develop a simple webserver to serve html pages and display the list of protocols in TCP/IP Protocol Suite.
 
@@ -36,11 +102,9 @@ Start the server script and check for errors.
 Open a browser and navigate to http://127.0.0.1:8000 (or the assigned port).
 
 ## PROGRAM:
-
-
+![alt text](<Screenshot 2026-11-14 160855.png>)
 ## OUTPUT:
-
-
+![alt text](<Screenshot 2026-11-14 160922.png>)
 ## RESULT:
 The program for implementing simple webserver is executed successfully.
 
